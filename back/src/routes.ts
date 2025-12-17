@@ -12,3 +12,6 @@ routes.get("/health", (_req, res) => {
 //Cards
 routes.get("/cards", controller.getAll);
 routes.post("/cards", controller.create);
+
+//Learning
+routes.get("/cards/quizz", controller.getQuizz);

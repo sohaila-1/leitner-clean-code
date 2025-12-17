@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
 import { CardEntity } from "../entities/CardEntity";
 
@@ -15,6 +15,16 @@ export class CardRepository {
 
   findById(id: string): Promise<CardEntity | null> {
     return this.repo.findOne({ where: { id } });
+  }
+
+  findManyByIds(ids: string[]): Promise<CardEntity[]> {
+    if (ids.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    return this.repo.findBy({
+      id: In(ids),
+    });
   }
 
   createAndSave(data: Pick<CardEntity, "question" | "answer" | "tag">): Promise<CardEntity> {
