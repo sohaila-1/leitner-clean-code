@@ -20,4 +20,7 @@ export class CardEntity {
 
   @Column({ type: "varchar" })
   category!: Category;
+
+  @Column({ type: "timestamp", nullable: true })
+  lastAnsweredAt!: Date | null;
 }

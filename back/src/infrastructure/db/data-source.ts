@@ -1,8 +1,9 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { env } from "../config/env";
-import { CardEntity } from "../entities/CardEntity";
-import { QuizDayEntity } from "../entities/QuizDayEntity";
+import { CardEntity } from "./entities/CardEntity";
+import { QuizDayEntity } from "./entities/QuizDayEntity";
+
 
 export const AppDataSource = new DataSource({
   type: "postgres",

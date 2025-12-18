@@ -1,6 +1,6 @@
-import { Category } from "../entities/CardEntity";
+import { Category } from "../../../domain/cards/Category";
 
-export interface CardDto {
+export interface CardResponse {
   id: string;
   question: string;
   answer: string;
