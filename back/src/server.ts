@@ -9,6 +9,8 @@ import { GetQuizDayUseCase } from "./application/quiz/usecases/GetQuizDayUseCase
 import { CardController } from "./main/controllers/CardController";
 import { buildRoutes } from "./main/routes";
 import { TypeOrmQuizDayRepository } from "./infrastructure/db/repositories/TypeOrmQuizDayRepository";
+import { AnswerCardUseCase } from "./application/cards/usecases/AnswerCardUseCase";
+
 
 async function bootstrap() {
   await AppDataSource.initialize();
@@ -25,11 +27,13 @@ async function bootstrap() {
     cardRepository,
     quizDayRepository
   );
+  const answerCardUseCase = new AnswerCardUseCase(cardRepository);
 
   const cardController = new CardController(
     createCardUseCase,
     getCardsUseCase,
-    getQuizDayUseCase
+    getQuizDayUseCase,
+    answerCardUseCase
   );
 
   const routes = buildRoutes(cardController);

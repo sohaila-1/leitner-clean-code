@@ -1,4 +1,5 @@
 import { CardRepository } from "../../../domain/cards/ports/CardRepository";
+import {CardNotFoundError} from "../errors/CardNotFoundError";
 
 export class AnswerCardUseCase {
   constructor(private cardRepo: CardRepository) {}
@@ -6,7 +7,7 @@ export class AnswerCardUseCase {
   async execute(cardId: string, isValid: boolean): Promise<void> {
     const card = await this.cardRepo.findById(cardId);
     if (!card) {
-      throw new Error("CARD_NOT_FOUND");
+      throw new CardNotFoundError(cardId);
     }
 
     card.validate(isValid);

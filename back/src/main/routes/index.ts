@@ -15,6 +15,8 @@ export function buildRoutes(cardController: CardController) {
 
   //Learning
   routes.get("/cards/quizz", cardController.getQuizz);
+  routes.patch("/cards/:cardId/answer", cardController.answer);
+
 
   return routes;
 }
