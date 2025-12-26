@@ -20,3 +20,15 @@ Production mode:
 npm run build
 npm run start
 ```
+
+### Running tests
+In `./back/`:
+```bash
+npm test
+```
+
+### Running tests with coverage
+In `./back/`:
+```bash
+npm run coverage
+```
