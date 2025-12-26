@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Révision – Leitner</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <h1 class="logo">Leitner</h1>
+        <ul class="nav-links">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="review.html" class="active">Révision</a></li>
+            <li><a href="boxes.html">Boîtes</a></li>
+            <li><a href="about.html">À propos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="hero">
+        <h2>Session de révision</h2>
+        <p>Réponds à la question, puis évalue ta réponse.</p>
+    </section>
+
+    <section class="review-card">
+        <h4 id="card-question">Question ici</h4>
+        
+        <textarea id="user-answer" class="review-input" placeholder="Écris ta réponse ici..."></textarea>
+        
+        <p id="card-answer" style="display:none; margin-top:1rem;">
+            Réponse ici
+        </p>
+
+        <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center;">
+            <button class="btn-primary" onclick="showAnswer()">Voir la réponse</button>
+            <button class="btn-primary" onclick="submitAnswer(true)">Correcte</button>
+            <button class="btn-primary" onclick="submitAnswer(false)">Incorrecte</button>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2025 Leitner — Tous droits réservés.</p>
+</footer>
+
+<script src="../js/app.js"></script>
+</body>
+</html>
