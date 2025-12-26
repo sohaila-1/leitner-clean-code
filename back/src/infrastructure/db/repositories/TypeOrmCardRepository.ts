@@ -38,4 +38,11 @@ export class TypeOrmCardRepository implements CardRepository {
 
     return card;
   }
+
+  async findByTags(tags: string[]): Promise<Card[]> {
+    if (tags.length === 0) return [];
+    const entities = await this.repo.find({ where: { tag: In(tags) }});
+    return entities.map(CardDbMapper.toDomain);
+  }
+
 }

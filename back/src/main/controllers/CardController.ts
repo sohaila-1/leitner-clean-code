@@ -32,12 +32,21 @@ export class CardController {
         private answerCard: AnswerCardUseCase
     ) { }
 
-    getAll = async (_req: Request, res: Response) => {
+    getAll = async (req: Request, res: Response) => {
         if (!this.auth.isAuthenticated()) {
             return res.status(401).json({ message: "Unauthorized" });
         }
 
-        const cards = await this.getCards.execute();
+        const tagsParam = req.query.tags;
+        let tags: string[] | undefined = undefined;
+        if (typeof tagsParam === "string") {
+            tags = tagsParam.split(",").map(t => t.trim()).filter(Boolean);
+        } else if (Array.isArray(tagsParam)) {
+            tags = tagsParam.map(String).map(t => t.trim()).filter(Boolean);
+        }
+
+
+        const cards = await this.getCards.execute(tags);
         return res.status(200).json(cards.map(toCardResponse));
     };
 
