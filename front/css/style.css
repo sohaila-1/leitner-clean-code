@@ -1,0 +1,287 @@
+/* =========================
+   Global styles
+========================= */
+
+:root {
+    /* Colors */
+    --primary-color: #2563eb;
+    --primary-hover: #1e40af;
+    --background-color: #f9fafb;
+    --text-color: #111827;
+    --secondary-text: #6b7280;
+    --border-color: #e5e7eb;
+    --white: #ffffff;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --line-height: 1.6;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
+
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+
+    /* Max width */
+    --max-width: 1100px;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: var(--line-height);
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   Header & Navigation
+========================= */
+
+.header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--secondary-text);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+/* =========================
+   Main layout
+========================= */
+
+.main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    /* reduce vertical padding so content sits higher */
+    padding: var(--spacing-xl) var(--spacing-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+   Hero section
+========================= */
+
+.hero {
+    text-align: center;
+    /* smaller gap under hero to bring the card closer */
+    margin-bottom: var(--spacing-xl);
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl);
+    color: var(--secondary-text);
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn-primary {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* =========================
+   Cards & Steps
+========================= */
+
+.explanation h3 {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+@media (max-width: 1024px) {
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+.step {
+    background-color: var(--white);
+    padding: 1.8rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.step:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.step h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.step p {
+    color: var(--secondary-text);
+}
+
+/* =========================
+   Review card
+========================= */
+
+.review-card {
+    /* reduced top gap so card sits closer to the hero */
+    margin-top: 0.5rem;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem 2rem;
+    width: 92%;
+    max-width: 760px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 16rem;
+    margin-right: 16rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#card-question {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.review-input {
+    width: 85%;
+    max-width: 600px;
+    min-height: 200px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.review-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#card-answer {
+    margin-top: var(--spacing-md);
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    background-color: #f0f4ff;
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--secondary-text);
+}
