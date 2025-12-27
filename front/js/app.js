@@ -6,19 +6,17 @@ let isAnswerVisible = false;
  * Fetch cards from backend API
  */
 async function loadCards() {
-    try {
-        const cards = await window.api.getCards();
-        flashcards = cards;
+  try {
+    const cards = await window.api.getCards();
+    flashcards = cards;
 
-        if (flashcards.length === 0) {
-            console.warn("No cards found");
-            return;
-        }
+    if (!cards || cards.length === 0) return;
 
-        renderCard();
-    } catch (error) {
-        console.error("Failed to load cards", error);
-    }
+    renderCard();
+    renderCardsByCategory(cards);
+  } catch (error) {
+    console.error("Failed to load cards", error);
+  }
 }
 
 /**
@@ -32,15 +30,88 @@ function getCurrentCard() {
  * Displays the current card on the screen
  */
 function renderCard() {
-    const card = getCurrentCard();
-    if (!card) return;
+  const card = getCurrentCard();
+  if (!card) return;
 
-    const questionElement = document.getElementById("card-question");
-    const answerElement = document.getElementById("card-answer");
+  const questionElement = document.getElementById("card-question");
+  const answerElement = document.getElementById("card-answer");
 
-    questionElement.textContent = card.question;
-    answerElement.textContent = card.answer;
-    answerElement.style.display = isAnswerVisible ? "block" : "none";
+  if (!questionElement || !answerElement) {
+    return;
+  }
+
+  questionElement.textContent = card.question;
+  answerElement.textContent = card.answer;
+  answerElement.style.display = isAnswerVisible ? "block" : "none";
+}
+
+const CATEGORY_LABELS = {
+  FIRST: "CATÉGORIE 1",
+  SECOND: "CATÉGORIE 2",
+  THIRD: "CATÉGORIE 3",
+  FOURTH: "CATÉGORIE 4",
+  FIFTH: "CATÉGORIE 5",
+  SIXTH: "CATÉGORIE 6",
+  SEVENTH: "CATÉGORIE 7",
+  DONE: "MAÎTRISÉES",
+};
+
+function renderCardsByCategory(cards) {
+  const container = document.getElementById("cardsContainer");
+  if (!container) return;
+
+  const order = [
+    "FIRST", "SECOND", "THIRD", "FOURTH",
+    "FIFTH", "SIXTH", "SEVENTH", "DONE"
+  ];
+
+  container.innerHTML = "";
+
+  for (const category of order) {
+    const column = document.createElement("div");
+    column.className = "category-column";
+
+    const title = document.createElement("h4");
+    title.textContent = CATEGORY_LABELS[category] || category;
+    column.appendChild(title);
+
+    const categoryCards = cards.filter(c => c.category === category);
+
+    if (categoryCards.length === 0) {
+      const empty = document.createElement("p");
+      empty.textContent = "— aucune carte —";
+      empty.className = "card-empty";
+      column.appendChild(empty);
+    } else {
+      categoryCards.forEach((card) => {
+        const item = document.createElement("div");
+        item.className = "card-item";
+
+        const questionBtn = document.createElement("button");
+        questionBtn.type = "button";
+        questionBtn.className = "card-item-button";
+        questionBtn.textContent = card.tag
+          ? `${card.question}  —  [${card.tag}]`
+          : card.question;
+
+        const answerDiv = document.createElement("div");
+        answerDiv.className = "card-item-answer";
+        answerDiv.textContent = card.answer;
+        answerDiv.style.display = "none";
+
+        questionBtn.addEventListener("click", () => {
+          const visible = answerDiv.style.display === "block";
+          answerDiv.style.display = visible ? "none" : "block";
+        });
+
+        item.appendChild(questionBtn);
+        item.appendChild(answerDiv);
+        column.appendChild(item);
+      });
+    }
+
+    container.appendChild(column);
+  }
 }
 
 /**
