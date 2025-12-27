@@ -1,52 +1,80 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boîtes – Leitner</title>
     <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
 
-<header class="header">
-    <nav class="nav">
-        <h1 class="logo">Leitner</h1>
-        <ul class="nav-links">
-            <li><a href="../index.html">Accueil</a></li>
-            <li><a href="review.html">Révision</a></li>
-            <li><a href="boxes.html" class="active">Boîtes</a></li>
-            <li><a href="about.html">À propos</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="header">
+        <nav class="nav">
+            <h1 class="logo">Leitner</h1>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="review.html">Révision</a></li>
+                <li><a href="boxes.html" class="active">Boîtes</a></li>
+                <li><a href="about.html">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<main class="main">
-    <section class="hero">
-        <h2>Progression des cartes</h2>
-        <p>Chaque boîte représente un niveau de maîtrise.</p>
-    </section>
+    <main class="main">
+        <section class="hero">
+            <h2>Progression des cartes</h2>
+            <p>Chaque boîte représente un niveau de maîtrise.</p>
+        </section>
 
-    <section class="steps">
-        <article class="step">
-            <h4>Boîte 1</h4>
-            <p>Cartes en cours d’apprentissage</p>
-        </article>
+        <section class="create-card">
+            <h3>Créer une nouvelle fiche</h3>
 
-        <article class="step">
-            <h4>Boîte 2</h4>
-            <p>Cartes partiellement maîtrisées</p>
-        </article>
+            <form id="createCardForm" class="create-card-form">
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="text" id="question" name="question" class="form-input" placeholder="Entrez la question"
+                        required />
+                </div>
 
-        <article class="step">
-            <h4>Boîte 3</h4>
-            <p>Cartes maîtrisées</p>
-        </article>
-    </section>
-</main>
+                <div class="form-group">
+                    <label for="answer">Réponse</label>
+                    <input type="text" id="answer" name="answer" class="form-input" placeholder="Entrez la réponse"
+                        required />
+                </div>
 
-<footer class="footer">
-    <p>Projet Clean Code – Système de Leitner © 2025</p>
-</footer>
+                <button type="submit" class="btn-primary">
+                    Créer la carte
+                </button>
+            </form>
+        </section>
+
+        <section class="steps">
+            <article class="step">
+                <h4>Boîte 1</h4>
+                <p>Cartes en cours d’apprentissage</p>
+            </article>
+
+            <article class="step">
+                <h4>Boîte 2</h4>
+                <p>Cartes partiellement maîtrisées</p>
+            </article>
+
+            <article class="step">
+                <h4>Boîte 3</h4>
+                <p>Cartes maîtrisées</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Projet Clean Code – Système de Leitner © 2025</p>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/app.js"></script>
 
 </body>
+
 </html>

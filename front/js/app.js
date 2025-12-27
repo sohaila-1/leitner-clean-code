@@ -7,8 +7,8 @@ let isAnswerVisible = false;
  */
 async function loadCards() {
     try {
-        const response = await fetch("http://localhost:3000/cards");
-        flashcards = await response.json();
+        const cards = await window.api.getCards();
+        flashcards = cards;
 
         if (flashcards.length === 0) {
             console.warn("No cards found");
@@ -67,9 +67,33 @@ function moveToNextCard() {
     renderCard();
 }
 
+function addCard() {
+  const form = document.getElementById("createCardForm");
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const question = document.getElementById("question").value.trim();
+    const answer = document.getElementById("answer").value.trim();
+
+    try {
+      await window.api.createCard(question, answer);
+      await loadCards();
+
+      form.reset();
+      alert("Carte créée avec succès");
+    } catch (err) {
+      console.error("Failed to create card", err);
+      alert("Erreur lors de la création de la carte");
+    }
+  });
+}
+
 /**
  * Initialize app
  */
 document.addEventListener("DOMContentLoaded", () => {
     loadCards();
+    addCard();    
 });
