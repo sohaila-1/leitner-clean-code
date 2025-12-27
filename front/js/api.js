@@ -13,8 +13,10 @@ class ApiService {
    * Récupère le token stocké en localStorage
    */
   getStoredToken() {
+    if (typeof localStorage === "undefined") return null;
     return localStorage.getItem("auth_token");
   }
+
 
   /**
    * Stocke le token
@@ -51,7 +53,6 @@ class ApiService {
       });
 
       if (response.status === 401) {
-        // Token expiré
         this.setToken(null);
         window.dispatchEvent(new CustomEvent("unauthorized"));
         throw new Error("Unauthorized - please login again");
@@ -132,6 +133,11 @@ class ApiService {
   }
 }
 
-// Instance globale du service API
-const api = new ApiService();
-window.api = api;
+if (typeof window !== "undefined") {
+  window.ApiService = ApiService;
+  window.api = new ApiService()
+}
+
+if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
+  module.exports = { ApiService }
+}

@@ -32,3 +32,8 @@ In `./back/`:
 ```bash
 npm run coverage
 ```
+### Running tests with coverage FRONT
+In `./front/`:
+```bash
+npm run coverage
+```

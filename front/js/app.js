@@ -7,10 +7,15 @@ let isAnswerVisible = false;
  */
 async function loadCards() {
   try {
-    const cards = await window.api.getCards();
+    const isReviewPage = document.getElementById("user-answer") !== null;
+
+    const cards = isReviewPage ? await window.api.getQuizDay() : await window.api.getCards();
     flashcards = cards;
 
-    if (!cards || cards.length === 0) return;
+    if (!cards || cards.length === 0) {
+      renderCard();
+      return;
+    }
 
     renderCard();
     renderCardsByCategory(cards);
@@ -18,6 +23,7 @@ async function loadCards() {
     console.error("Failed to load cards", error);
   }
 }
+
 
 /**
  * Returns the current flashcard
@@ -125,17 +131,32 @@ function showAnswer() {
 /**
  * Handles user answer
  */
-function submitAnswer(isCorrect) {
-    moveToNextCard();
+async function submitAnswer(isCorrect) {
+  const card = getCurrentCard();
+  if (!card) return;
+
+  try {
+    await window.api.answerCard(card.id, isCorrect);
+  } catch (error) {
+    console.error("Failed to submit answer", error);
+    alert("Erreur lors de l'envoi de la réponse");
+    return;
+  }
+  moveToNextCard();
 }
 
 /**
  * Moves to the next card
  */
 function moveToNextCard() {
-    isAnswerVisible = false;
-    currentCardIndex = (currentCardIndex + 1) % flashcards.length;
-    renderCard();
+  if (!flashcards.length) return;
+  isAnswerVisible = false;
+  currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+  const userAnswer = document.getElementById("user-answer");
+  if (userAnswer) {
+    userAnswer.value = "";
+  }
+  renderCard();
 }
 
 function addCard() {
