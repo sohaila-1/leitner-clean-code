@@ -76,11 +76,16 @@ function addCard() {
 
     const question = document.getElementById("question").value.trim();
     const answer = document.getElementById("answer").value.trim();
+    const tag = document.getElementById("tag").value.trim();
 
     try {
-      await window.api.createCard(question, answer);
-      await loadCards();
+      if (tag) {
+        await window.api.createCard(question, answer, tag);
+      } else {
+        await window.api.createCard(question, answer);
+      }
 
+      await loadCards();
       form.reset();
       alert("Carte créée avec succès");
     } catch (err) {
