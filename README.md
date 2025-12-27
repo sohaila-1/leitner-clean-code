@@ -36,6 +36,11 @@ In `./back/`:
 ```bash
 npm run coverage
 ```
+### Running tests with coverage FRONT
+In `./front/`:
+```bash
+npm run coverage
+```
 
 ### End-to-end test (BONUS 2)
 The end-to-end test is available at `bonus-2` branch of this repo. Please mind its README file
