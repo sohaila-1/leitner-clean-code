@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boîtes – Leitner</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <h1 class="logo">Leitner</h1>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="review.html">Révision</a></li>
+                <li><a href="boxes.html" class="active">Boîtes</a></li>
+                <li><a href="about.html">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <h2>Progression des cartes</h2>
+            <p>Chaque boîte représente un niveau de maîtrise.</p>
+        </section>
+
+        <section class="create-card">
+            <h3>Créer une nouvelle fiche</h3>
+
+            <form id="createCardForm" class="create-card-form">
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="text" id="question" name="question" class="form-input" placeholder="Entrez la question"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="answer">Réponse</label>
+                    <input type="text" id="answer" name="answer" class="form-input" placeholder="Entrez la réponse"
+                        required />
+                </div>
+
+                <div class="form-group">
+                    <label for="tag">Tag (optionnel)</label>
+                    <input type="text" id="tag" name="tag" class="form-input"
+                        placeholder="Ex: JavaScript, Clean Code, Algo" />
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Créer la carte
+                </button>
+            </form>
+        </section>
+
+        <section class="cards-by-category">
+            <h3>Cartes par boîte</h3>
+            <div id="cardsContainer" class="category-grid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Projet Clean Code – Système de Leitner © 2025</p>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>
