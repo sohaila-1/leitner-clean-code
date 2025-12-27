@@ -134,3 +134,4 @@ class ApiService {
 
 // Instance globale du service API
 const api = new ApiService();
+window.api = api;
