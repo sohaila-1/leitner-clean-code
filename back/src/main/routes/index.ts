@@ -14,10 +14,13 @@ export function buildRoutes(cardController: CardController) {
   routes.post("/cards", cardController.create);
 
   // Quiz (IMPORTANT pour review.html)
-  routes.get("/quiz", cardController.getQuizz);
+  // routes.get("/quiz", cardController.getQuizz);
+  routes.get("/cards/quizz", cardController.getQuizz);
+
 
   // Answer card (IMPORTANT pour Correct / Incorrect)
-  routes.post("/cards/:cardId/answer", cardController.answer);
+  // routes.post("/cards/:cardId/answer", cardController.answer);
+  routes.patch("/cards/:cardId/answer", cardController.answer);
 
   return routes;
 }
