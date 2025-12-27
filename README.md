@@ -3,6 +3,10 @@ In `./back/`:
 ```bash
 npm install
 ```
+
+### Add .env file from MyGES
+Download .env file from MyGES and save it in `./back/`
+
 ### Start the database
 In the root folder:
 ```bash
@@ -32,3 +36,6 @@ In `./back/`:
 ```bash
 npm run coverage
 ```
+
+### End-to-end test (BONUS 2)
+The end-to-end test is available at `bonus-2` branch of this repo. Please mind its README file
