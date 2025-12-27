@@ -4,6 +4,9 @@ In `./e2e/`:
 npm install
 ```
 
+### Add .env file from MyGES
+Download .env file from MyGES and save it in `./back/`
+
 ### Run the test
 In `./e2e/`:
 ```bash
